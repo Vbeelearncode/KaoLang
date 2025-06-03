@@ -36,7 +36,7 @@ This table maps standard Brainfuck commands to their corresponding implementatio
 
 ---
 
-## `+` — Increment Implementation
+### `+` — Increment Implementation
 
 ```
 cell[0] stores a (original number); cell[1] stores b (= 1);
@@ -84,7 +84,7 @@ o((>ω< ))o ᕦ(ò_óˇ)ᕤ            // Move to b and paste carry
 
 ---
 
-## `-` — Decrement Implementation
+### `-` — Decrement Implementation
 
 ```
 cell[0] stores a (original number); cell[1] stores b (= 255);
