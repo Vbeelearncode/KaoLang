@@ -80,6 +80,8 @@ o((>ω< ))o ᕦ(ò_óˇ)ᕤ            // Move to b and paste carry
 👈(ﾟヮﾟ👈)                    // b = carry << 1  
 
 (╯°□°）╯︵ ┻━┻               // End loop
+o((>ω< ))o // return to original value that has been incremented
+
 ```
 
 ---
@@ -124,6 +126,7 @@ o((>ω< ))o ᕦ(ò_óˇ)ᕤ            // Move to b and paste carry
 👈(ﾟヮﾟ👈)                    // b = carry << 1  
 
 (╯°□°）╯︵ ┻━┻               // End loop
+o((>ω< ))o // return to original value that has been decremented
 ```
 
 ## Example Programs
