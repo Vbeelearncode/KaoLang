@@ -3,20 +3,58 @@ created by Bao Vuong, 6/2/2025
 
 KaoLang (👉ﾟヮﾟ)👉 is an esoteric programming language inspired by *Brainf\*ck*. It is written and maintained by Bao Vuong (aka Vbee). KaoLang (👉ﾟヮﾟ)👉 exists due to the lack of kaomoji usage in esoteric languages. Don't get tricked by the naive look of KaoLang (👉ﾟヮﾟ)👉 because it forces the user to do bit twiddling instead of + or - operation from *Brainf\*ck*.
 
-## Commands
+<h2>Commands</h2>
 
-| Kaomoji                  | Functionality                                              |
-|--------------------------|------------------------------------------------------------|
-| 👈(ﾟヮﾟ👈)                 | Shift current memory cell value **left** by 1 (multiply by 2) |
-| (👉ﾟヮﾟ)👉                 | Shift current memory cell value **right** by 1 (integer divide by 2) |
-| 👈(⌒▽⌒)👉                | Apply **NAND** between current memory cell and value in register; store result in current memory cell; sets register value to 0 after operation |
-| (ヘ･_･)ヘ┳━┳             | Begin loop if current memory cell is **not zero**           |
-| (╯°□°）╯︵ ┻━┻           | End loop — jump back to matching loop start if current cell is **not zero** |
-| ✍️(◔◡◔)                  | Output the character corresponding to the current memory cell |
-| (⓿_⓿)                   | Read one byte from input into the current memory cell       |
-| o(( >ω<))o               | Move memory pointer **right** by 1 cell                     |
-| o((>ω< ))o               | Move memory pointer **left** by 1 cell                      |
-| ᕦ(ò_óˇ)ᕤ                        | Copy current memory cell value into the **register**  if register value is 0, else replace memory cell value with value in register + set register value to 0    |
+<table>
+  <thead>
+    <tr>
+      <th style="width: 250px;">Kaomoji</th>
+      <th>Functionality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>👈(ﾟヮﾟ👈)</td>
+      <td>Shift current memory cell value <strong>left</strong> by 1 (multiply by 2)</td>
+    </tr>
+    <tr>
+      <td>(👉ﾟヮﾟ)👉</td>
+      <td>Shift current memory cell value <strong>right</strong> by 1 (integer divide by 2)</td>
+    </tr>
+    <tr>
+      <td>👈(⌒▽⌒)👉</td>
+      <td>Apply <strong>NAND</strong> between current memory cell and value in register; store result in current memory cell; sets register value to 0 after operation</td>
+    </tr>
+    <tr>
+      <td>(ヘ･_･)ヘ┳━┳</td>
+      <td>Begin loop if current memory cell is <strong>not zero</strong></td>
+    </tr>
+    <tr>
+      <td>(╯°□°）╯︵ ┻━┻</td>
+      <td>End loop — jump back to matching loop start if current cell is <strong>not zero</strong></td>
+    </tr>
+    <tr>
+      <td>✍️(◔◡◔)</td>
+      <td>Output the character corresponding to the current memory cell</td>
+    </tr>
+    <tr>
+      <td>(⓿_⓿)</td>
+      <td>Read one byte from input into the current memory cell</td>
+    </tr>
+    <tr>
+      <td>o(( >ω<))o</td>
+      <td>Move memory pointer <strong>right</strong> by 1 cell</td>
+    </tr>
+    <tr>
+      <td>o((>ω< ))o</td>
+      <td>Move memory pointer <strong>left</strong> by 1 cell</td>
+    </tr>
+    <tr>
+      <td>ᕦ(ò_óˇ)ᕤ</td>
+      <td>Copy current memory cell value into the <strong>register</strong> if register value is 0, else replace memory cell value with value in register + set register value to 0</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Computational Class
 KaoLang (👉ﾟヮﾟ)👉 is Turing complete because every command can be mapped to a *Brainf\*ck* command.
