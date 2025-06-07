@@ -408,3 +408,9 @@ o((>ω< ))o o((>ω< ))o o((>ω< ))o o((>ω< ))o o((>ω< ))o o((>ω< ))o o((>ω< 
 👈(⌒▽⌒)👉 -> 255
 ᕦ(ò_óˇ)ᕤ 👈(⌒▽⌒)👉 -> 0
 ```
+
+## External Resources
+
+Brainf\*ck: https://esolangs.org/wiki/Brainfuck
+Github Repo for KaoLang (👉ﾟヮﾟ)👉: https://github.com/Vbeelearncode/KaoLang
+KaoLang Interpreter: Coming soon
