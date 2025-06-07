@@ -1,7 +1,7 @@
 # KaoLang (👉ﾟヮﾟ)👉 Specification
 created by Bao Vuong, 6/2/2025
 
-KaoLang (👉ﾟヮﾟ)👉 is an esoteric programming language inspired by *Brainfuck*. It is written and maintained by Bao Vuong (aka Vbee). KaoLang (👉ﾟヮﾟ)👉 exists due to the lack of kaomoji usage in esoteric languages. Don't get tricked by the naive look of KaoLang (👉ﾟヮﾟ)👉 because it forces the user to do bit twiddling instead of + or - operation from *Brainfuck*.
+KaoLang (👉ﾟヮﾟ)👉 is an esoteric programming language inspired by *Brainf\*ck*. It is written and maintained by Bao Vuong (aka Vbee). KaoLang (👉ﾟヮﾟ)👉 exists due to the lack of kaomoji usage in esoteric languages. Don't get tricked by the naive look of KaoLang (👉ﾟヮﾟ)👉 because it forces the user to do bit twiddling instead of + or - operation from *Brainf\*ck*.
 
 ## Commands
 
@@ -19,11 +19,11 @@ KaoLang (👉ﾟヮﾟ)👉 is an esoteric programming language inspired by *Bra
 | ᕦ(ò_óˇ)ᕤ                        | Copy current memory cell value into the **register**  if register value is 0, else replace memory cell value with value in register + set register value to 0    |
 
 ## Computational Class
-KaoLang (👉ﾟヮﾟ)👉 is Turing complete because every command can be mapped to a *Brainfuck* command.
+KaoLang (👉ﾟヮﾟ)👉 is Turing complete because every command can be mapped to a *Brainf\*ck* command.
 
-This table maps standard Brainfuck commands to their corresponding implementations in KaomojiLang, proving its Turing completeness.
+This table maps standard Brainf\*ck commands to their corresponding implementations in KaomojiLang, proving its Turing completeness.
 
-| Brainfuck | KaoLang (👉ﾟヮﾟ)👉 Equivalent | Description |
+| Brainf\*ck | KaoLang (👉ﾟヮﾟ)👉 Equivalent | Description |
 |-----------|------------------------|-------------|
 | `>`       | `o(( >ω<))o`           | Move memory pointer right |
 | `<`       | `o((>ω< ))o`           | Move memory pointer left |
@@ -134,7 +134,7 @@ o((>ω< ))o // return to original value that has been decremented
 ### XKCD Random Number
 
 ```
-👈(⌒▽⌒)👉 👈(ﾟヮﾟ👈) 👈(ﾟヮﾟ👈) 👈(ﾟヮﾟ👈) 👈(ﾟヮﾟ👈) 👈(ﾟヮﾟ👈) 👈(ﾟヮﾟ👈) (👉ﾟヮﾟ)👉 (👉ﾟヮﾟ)👉 ᕦ(ò_óˇ)ᕤ 👈(⌒▽⌒)👉 // cell[1] = !(00110000)
+the next kaomoji (NAND) cannot be the start of the program because the unicode will automatically change, so here are some words👈(⌒▽⌒)👉👈(ﾟヮﾟ👈) 👈(ﾟヮﾟ👈) 👈(ﾟヮﾟ👈) 👈(ﾟヮﾟ👈) 👈(ﾟヮﾟ👈) 👈(ﾟヮﾟ👈) (👉ﾟヮﾟ)👉 (👉ﾟヮﾟ)👉 ᕦ(ò_óˇ)ᕤ 👈(⌒▽⌒)👉 // cell[1] = !(00110000)
 o(( >ω<))o 👈(⌒▽⌒)👉 (👉ﾟヮﾟ)👉 ᕦ(ò_óˇ)ᕤ 👈(⌒▽⌒)👉 👈(ﾟヮﾟ👈) 👈(ﾟヮﾟ👈) ᕦ(ò_óˇ)ᕤ 👈(⌒▽⌒)👉 // cell[2] = !(00000100)
 ᕦ(ò_óˇ)ᕤ o((>ω< ))o 👈(⌒▽⌒)👉 ✍️(◔◡◔) // print '4' (ascii 52)
 ```
