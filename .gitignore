@@ -1,0 +1,78 @@
+# Compiled object files
+*.o
+*.obj
+*.lo
+*.la
+
+# Precompiled headers
+*.gch
+*.pch
+
+# Compiled binaries and apps
+main
+*.out
+*.exe
+*.app
+*.so
+*.dylib
+
+# Build directories
+/build/
+/bin/
+/obj/
+/out/
+/Debug/
+/Release/
+dist/
+cmake-build-*/
+
+# CMake files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+install_manifest.txt
+
+# IDEs and editors
+.vscode/
+# Uncomment to keep repo-specific VSCode settings:
+# !/.vscode/settings.json
+# !/.vscode/tasks.json
+
+# macOS
+.DS_Store
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS debug symbols
+*.dSYM/
+main.dSYM/
+
+# Logs, temporary files, swap
+*.log
+*.tmp
+*.temp
+*.swp
+*~
+.npmrc
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage and profiling
+*.gcda
+*.gcno
+coverage/
+coverage-*/
+
+# Core dumps
+core
+*.core
+
+# YAML (editor backups)
+*~.yml
+
+# Misc
+.env
+*.bak
+*.orig
