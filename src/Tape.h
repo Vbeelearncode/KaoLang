@@ -12,6 +12,8 @@ public:
     Tape();
     int getCurrentCellValue() const;
     void setCurrentCellValue(int value);
-    void shiftLeft();
-    void shiftRight();    
+    void valueShiftLeft();
+    void valueShiftRight();
+    void moveLeft();
+    void moveRight();
 };
