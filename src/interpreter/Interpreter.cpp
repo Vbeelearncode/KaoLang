@@ -4,38 +4,20 @@
 
 #include <iostream>
 #include <istream>
+#include <cctype>
 
 Interpreter::Interpreter(std::istream& input_stream) 
-: counter_(0), register_(0), tape_(), input_stream_(input_stream) {
-    initCommandMap();
-}
+: counter_(0), tape_(), input_stream_(input_stream) {}
 
-Interpreter::Interpreter(std::istream& input_stream, const std::vector<std::string>& program)
-    : counter_(0), register_(0), program_(program), tape_(), input_stream_(input_stream) {
-    initCommandMap();
-}
+Interpreter::Interpreter(std::istream& input_stream, const std::vector<Command>& program)
+    : counter_(0), program_(program), tape_(), input_stream_(input_stream) {}
 
-void Interpreter::loadProgram(const std::vector<std::string>& program) {
+void Interpreter::loadProgram(const std::vector<Command>& program) {
     program_ = program;
     counter_ = 0;
-    register_ = 0;
+    reg_ = std::nullopt;
     stack_.clear();
     tape_ = Tape();
-}
-
-void Interpreter::initCommandMap() {
-    command_map_ = {
-        {"SHIFT_LEFT", [this]() { shiftLeftMemoryCell(); }},
-        {"SHIFT_RIGHT", [this]() { shiftRightMemoryCell(); }},
-        {"NAND", [this]() { applyNANDToMemoryCell(); }},
-        {"LOOP_START", [this]() { loopStart(); }},
-        {"LOOP_END", [this]() { loopEnd(); }},
-        {"WRITE", [this]() { writeCharFromMemoryCell(); }},
-        {"READ", [this]() { readNextByte(); }},
-        {"MOVE_LEFT", [this]() { moveLeftOnTape(); }},
-        {"MOVE_RIGHT", [this]() { moveRightOnTape(); }},
-        {"COPY_TO_REGISTER", [this]() { copyMemoryCellToRegister(); }}
-    };
 }
 
 void Interpreter::runNextCommand() {
@@ -43,21 +25,40 @@ void Interpreter::runNextCommand() {
         return;
     }
 
-    const std::string& command = program_[counter_];
-    auto it = command_map_.find(command);
-    if (it != command_map_.end()) {
-        it->second();
-    } else {
-        std::cerr << "Unknown command: " << command << std::endl;
+    Command cmd = program_[counter_];
+
+    switch (cmd) {
+        case Command::SHIFT_LEFT: shiftLeftMemoryCell(); break;
+        case Command::SHIFT_RIGHT: shiftRightMemoryCell(); break;
+        case Command::NAND: applyNANDToMemoryCell(); break;
+        case Command::LOOP_START: loopStart(); break;
+        case Command::LOOP_END: loopEnd(); break;
+        case Command::WRITE: writeCharFromMemoryCell(); break;
+        case Command::READ: readNextByte(); break;
+        case Command::MOVE_LEFT: moveLeftOnTape(); break;
+        case Command::MOVE_RIGHT: moveRightOnTape(); break;
+        case Command::COPY_TO_REGISTER: copyMemoryCellToRegister(); break;
+        default: break;
     }
 
     ++counter_;
+    // printStatus(); // for debugging
 }
 
 void Interpreter::runAll() {
     while (counter_ < program_.size()) {
         runNextCommand();
     }
+}
+
+void Interpreter::printStatus() {
+    std::cout << "Counter: " << counter_ << ", Register: " << (reg_.has_value() ? std::to_string(reg_.value()) : "None") << std::endl;
+    std::cout << "Stack: ";
+    for (int addr : stack_) {
+        std::cout << addr << " ";
+    }
+    std::cout << std::endl;
+    tape_.printStatus();
 }
 
 void Interpreter::shiftLeftMemoryCell() {
@@ -69,17 +70,21 @@ void Interpreter::shiftRightMemoryCell() {
 }
 
 void Interpreter::applyNANDToMemoryCell() {
-    tape_.nandCurrentCellValue(register_);
-    register_ = 0;
+    if (reg_.has_value()) {
+        tape_.nandCurrentCellValue(reg_.value());
+        reg_.reset();
+    } else {
+        tape_.nandCurrentCellValue(0);
+    }
 }
 
 void Interpreter::loopStart() {
     if (tape_.getCurrentCellValue() == 0) {
         int loop_counter = 1;
         while (loop_counter > 0 && ++counter_ < program_.size()) {
-            if (program_[counter_] == "LOOP_START") {
+            if (program_[counter_] == Command::LOOP_START) {
                 ++loop_counter;
-            } else if (program_[counter_] == "LOOP_END") {
+            } else if (program_[counter_] == Command::LOOP_END) {
                 --loop_counter;
             }
         }
@@ -111,14 +116,25 @@ void Interpreter::moveRightOnTape() {
 }
 
 void Interpreter::copyMemoryCellToRegister() {
-    register_ = tape_.getCurrentCellValue();
+    if (reg_.has_value()) {
+        tape_.setCurrentCellValue(reg_.value());
+        reg_.reset();
+    } else {
+        reg_ = tape_.getCurrentCellValue();
+    }
 }
 
 void Interpreter::readNextByte() {
     char input_char;
-    if (input_stream_.get(input_char)) {
-        tape_.setCurrentCellValue(static_cast<int>(input_char));
-    } else {
-        tape_.setCurrentCellValue(0);
-    }
+    
+    // skip whitespace
+    do {
+        if (!input_stream_.get(input_char)) {
+            // set memory cell value to 0 if there's nothing in input stream
+            tape_.setCurrentCellValue(0);
+            return;
+        }
+    } while (std::isspace(static_cast<unsigned char>(input_char)));
+    
+    tape_.setCurrentCellValue(static_cast<int>(input_char));
 }
