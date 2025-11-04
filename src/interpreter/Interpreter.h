@@ -4,19 +4,19 @@
 #include <istream>
 #include <vector>
 #include <string>
-#include <Tape.h>
+#include <optional>
+#include "Tape.h"
+#include "Command.h"
 
 class Interpreter {
 private:
     int counter_;
-    int register_;
+    std::optional<int> reg_;
     std::vector<int> stack_;
-    std::vector<std::string> program_;
+    std::vector<Command> program_;
     std::istream& input_stream_;
     Tape tape_;
-    std::unordered_map<std::string, std::function<void()>> command_map_;
 
-    void initCommandMap();
     void shiftLeftMemoryCell();
     void shiftRightMemoryCell();
     void applyNANDToMemoryCell();
@@ -27,11 +27,12 @@ private:
     void moveRightOnTape();
     void copyMemoryCellToRegister();
     void readNextByte();
+    void printStatus(); // for debugging
 
 public:
     Interpreter(std::istream& input_stream);
-    Interpreter(std::istream& input_stream, const std::vector<std::string>& program);
-    void loadProgram(const std::vector<std::string>& program);
+    Interpreter(std::istream& input_stream, const std::vector<Command>& program);
+    void loadProgram(const std::vector<Command>& program);
     void runNextCommand();
     void runAll();
 };
