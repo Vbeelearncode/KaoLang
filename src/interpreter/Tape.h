@@ -11,7 +11,7 @@ private:
 public:
     Tape();
     int getCurrentCellValue() const;
-    void setCurrentCellValue(int value);
+    void nandCurrentCellValue(int value);
     void valueShiftLeft();
     void valueShiftRight();
     void moveLeft();
