@@ -11,6 +11,7 @@ set(SRC_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/interpreter/Interpreter.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/interpreter/Tape.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/utf/utf_utils.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/parser/Parser.cpp
 )
 
 target_sources(KaoLang
@@ -22,4 +23,5 @@ target_include_directories(KaoLang
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/interpreter
     ${CMAKE_CURRENT_SOURCE_DIR}/src/utf
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/parser
 )
