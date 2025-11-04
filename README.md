@@ -51,7 +51,7 @@ KaoLang (👉ﾟヮﾟ)👉 is an esoteric programming language inspired by *Bra
     </tr>
     <tr>
       <td>ᕦ(ò_óˇ)ᕤ</td>
-      <td>Copy current memory cell value into the <strong>register</strong> if register value is 0, else replace memory cell value with value in register + set register value to 0</td>
+      <td>Copy current memory cell value into the <strong>register</strong> if register is empty, else replace memory cell value with value in register + set register to empty</td>
     </tr>
   </tbody>
 </table>
