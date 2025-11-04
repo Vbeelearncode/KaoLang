@@ -1,0 +1,46 @@
+(⓿_⓿) // read in a byte in cell[0]
+
+// prepare value 1 in cell[1]
+o(( >ω<))o // move to cell[1]
+👈(⌒▽⌒)👉 // NAND 0 with 0 = 255
+ᕦ(ò_óˇ)ᕤ // copy 255 to register
+(👉ﾟヮﾟ)👉 // shift cell[1] right = 127
+👈(ﾟヮﾟ👈) // shift cell[1] left = 254
+👈(⌒▽⌒)👉 // NAND 255 with 254 = 1
+// cell[1] = 1, register = 0
+
+(ヘ･_･)ヘ┳━┳ // while cell[1] != 0
+o((>ω< ))o ᕦ(ò_óˇ)ᕤ // Copy a to register
+o(( >ω<))o o(( >ω<))o ᕦ(ò_óˇ)ᕤ // Paste a to cell[2]
+o((>ω< ))o ᕦ(ò_óˇ)ᕤ // Copy b
+o(( >ω<))o 👈(⌒▽⌒)👉 // NAND a b; register reset
+ᕦ(ò_óˇ)ᕤ            // Copy NAND result to reg
+👈(⌒▽⌒)👉            // NAND again to get a & b; register reset
+
+o((>ω< ))o ᕦ(ò_óˇ)ᕤ         // Copy b to reg
+o(( >ω<))o o(( >ω<))o ᕦ(ò_óˇ)ᕤ // Paste b to cell[3]
+ᕦ(ò_óˇ)ᕤ 👈(⌒▽⌒)👉           // ~b in cell[3]; register reset
+
+o((>ω< ))o o((>ω< ))o o((>ω< ))o ᕦ(ò_óˇ)ᕤ  // Copy a
+o(( >ω<))o o(( >ω<))o o(( >ω<))o o(( >ω<))o ᕦ(ò_óˇ)ᕤ // Paste a to cell[4]
+ᕦ(ò_óˇ)ᕤ 👈(⌒▽⌒)👉           // ~a in cell[4]; register reset
+
+o((>ω< ))o o((>ω< ))o o((>ω< ))o o((>ω< ))o ᕦ(ò_óˇ)ᕤ// Back to a, copy a
+o(( >ω<))o o(( >ω<))o o(( >ω<))o  // To ~b
+👈(⌒▽⌒)👉                       // cell[3] = NAND a ~b; register reset
+
+o((>ω< ))o o((>ω< ))o ᕦ(ò_óˇ)ᕤ // Copy b
+o(( >ω<))o o(( >ω<))o o(( >ω<))o // To ~a
+👈(⌒▽⌒)👉                       // cell[4] = NAND b ~a; register reset
+
+ᕦ(ò_óˇ)ᕤ o((>ω< ))o 👈(⌒▽⌒)👉 // Final XOR: (a NAND ~b) NAND (b NAND ~a); register reset
+
+ᕦ(ò_óˇ)ᕤ o((>ω< ))o o((>ω< ))o o((>ω< ))o ᕦ(ò_óˇ)ᕤ // Paste XOR result back to cell a
+
+o(( >ω<))o o(( >ω<))o ᕦ(ò_óˇ)ᕤ // Copy carry
+o((>ω< ))o ᕦ(ò_óˇ)ᕤ            // Move to b and paste carry
+👈(ﾟヮﾟ👈)                    // b = carry << 1  
+
+(╯°□°）╯︵ ┻━┻               // End loop
+o((>ω< ))o // return to original value that has been incremented
+✍️(◔◡◔) // output the incremented
