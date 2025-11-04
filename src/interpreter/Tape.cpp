@@ -11,6 +11,10 @@ void Tape::nandCurrentCellValue(int value) {
     cells_[cur_index_] = ~(cells_[cur_index_] & value);
 }
 
+void Tape::setCurrentCellValue(int value) {
+    cells_[cur_index_] = value;
+}
+
 void Tape::valueShiftLeft() {
     cells_[cur_index_] <<= 1;
 }
