@@ -1,32 +1,37 @@
 // Interpreter.h - interface for KaoLang interpreter
 #pragma once
 
+#include <istream>
 #include <vector>
 #include <string>
 #include <Tape.h>
 
 class Interpreter {
 private:
-    int p_counter;
-    int p_register;
-    std::vector<int> p_stack;
-    std::vector<std::string> p_program;
-    Tape p_tape;
+    int counter_;
+    int register_;
+    std::vector<int> stack_;
+    std::vector<std::string> program_;
+    std::istream& input_stream_;
+    Tape tape_;
+    std::unordered_map<std::string, std::function<void()>> command_map_;
 
+    void initCommandMap();
     void shiftLeftMemoryCell();
     void shiftRightMemoryCell();
     void applyNANDToMemoryCell();
     void loopStart();
     void loopEnd();
     void writeCharFromMemoryCell();
-    void readCharToMemoryCell(char input_char);
     void moveLeftOnTape();
     void moveRightOnTape();
     void copyMemoryCellToRegister();
+    void readNextByte();
 
 public:
-    Interpreter();
-    Interpreter(const std::vector<std::string>& program);
+    Interpreter(std::istream& input_stream);
+    Interpreter(std::istream& input_stream, const std::vector<std::string>& program);
     void loadProgram(const std::vector<std::string>& program);
-    void run();
+    void runNextCommand();
+    void runAll();
 };
