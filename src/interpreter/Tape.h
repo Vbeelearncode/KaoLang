@@ -6,15 +6,16 @@
 class Tape {
 private:
     int cur_index_;
-    std::vector<int> cells_;
+    std::vector<uint8_t> cells_;
 
 public:
     Tape();
-    int getCurrentCellValue() const;
-    void nandCurrentCellValue(int value);
-    void setCurrentCellValue(int value);
+    uint8_t getCurrentCellValue() const;
+    void nandCurrentCellValue(uint8_t value);
+    void setCurrentCellValue(uint8_t value);
     void valueShiftLeft();
     void valueShiftRight();
     void moveLeft();
     void moveRight();
+    void printStatus() const; // for debugging
 };
