@@ -5,13 +5,30 @@
 #include <iterator>
 
 #include "utf/utf_utils.h"
-
+#include "interpreter/Interpreter.h"
+#include "parser/Parser.h"
 
 int main(int argc, char* argv[]) {
+    // get program file from argument
     std::ifstream file(argv[1], std::ios::binary);
     if (!file.is_open()) {
         std::cerr << "Failed to open file: " << argv[1] << std::endl;
         return 1;
+    }
+
+    // get input stream from argument or use stdin if no argument is provided
+    std::istream* input_stream = nullptr;
+    std::ifstream filestream;
+    
+    if (argc < 3) {
+        input_stream = &std::cin;
+    } else {
+        filestream.open(argv[2], std::ios::binary);
+        if (!filestream.is_open()) {
+            std::cerr << "Failed to open file: " << argv[2] << std::endl;
+            return 1;
+        }
+        input_stream = &filestream;
     }
 
     // pass file begin iterator and null iterator to vector constructor
@@ -21,16 +38,11 @@ int main(int argc, char* argv[]) {
         std::istreambuf_iterator<char>()
     };
 
-    std::vector<char32_t> code_points;
-    for (int cur_byte_index = 0; cur_byte_index < (int)bytes.size();) {
-        // calc how many bytes this unicode character need
-        unsigned int expected_bytes_count = utf8_expected_bytes(bytes[cur_byte_index]);
-        char32_t code_point = utf8_decode(bytes, cur_byte_index, expected_bytes_count);
-        code_points.push_back(code_point);
-
-        // skip to the next unicode byte
-        cur_byte_index += expected_bytes_count;
-    }
-
+    // match code points with Kaomoji to produce program vector with human/program readable instructions
+    Parser parser = Parser(bytes);
+    const std::vector<Command> program = parser.getProgram();
+    
+    Interpreter interpreter(*input_stream, program);
+    interpreter.runAll();
     return 0;
 }
