@@ -10,6 +10,11 @@
   --muted:#64748b;
   --card-bg: rgba(255,255,255,0.82);
   --glass-blur: 6px;
+  /* layout tokens */
+  --gap: 14px; /* consistent spacing between sections */
+  --textarea-radius: 10px;
+  --textarea-border: rgba(16,24,40,0.08);
+  --textarea-shadow: rgba(15,23,42,0.04);
 }
 
 /* full-page layout */
@@ -61,6 +66,7 @@ main{
   border: 1px solid rgba(0,0,0,0.06);
   position: relative;
   z-index: 1; /* ensure the content sits above the overlay */
+  box-sizing: border-box;
 }
 
 h1{
@@ -70,37 +76,67 @@ h1{
 }
 
 section{
-  margin:14px 0;
+  margin: var(--gap) 0;
 }
 
 label{ font-weight:700; color:var(--muted); }
 
 textarea{
   width:100%;
+  max-width:100%;
+  box-sizing: border-box; /* include padding/border in width calculations to avoid overflow */
   resize:vertical;
   padding:12px;
-  border-radius:8px;
-  border:1px solid rgba(16,24,40,0.08);
+  border-radius: var(--textarea-radius);
+  border:1px solid var(--textarea-border);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', "Courier New", monospace;
   font-size:0.95rem;
   line-height:1.4;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+  min-height:48px;
+  background: #fff;
+  color: inherit;
+  transition: box-shadow 160ms ease, transform 120ms ease, border-color 120ms ease;
+  /* subtle slick border + soft outer shadow + inner highlight */
+  box-shadow:
+    0 6px 18px rgba(15,23,42,0.03),
+    inset 0 1px 0 rgba(255,255,255,0.6);
 }
+
+/* focus style */
+textarea:focus{
+  outline: none;
+  border-color: rgba(106,211,209,0.9); /* --accent-2 tint */
+  box-shadow:
+    0 10px 30px rgba(106,211,209,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.75);
+  transform: translateY(-1px);
+}
+
 #programBox{ min-height:200px; }
 #inputBox{ min-height:70px; }
 
-/* output box is now a read-only textarea */
+/* output box should match other textareas; only override sizing/scrolling */
+/* output display: visually match textareas but non-interactive */
 #outputBox{
-  width:100%;
-  background: #f7fbfb;
-  border-radius:8px;
-  padding:12px;
-  border:1px dashed rgba(16,24,40,0.06);
   min-height:100px;
   max-height:300px;
   overflow:auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: #fff;
+  border-radius: var(--textarea-radius);
+  padding:12px;
+  border:1px solid var(--textarea-border);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
-  resize:vertical;
+  font-size:0.95rem;
+  line-height:1.4;
+  box-shadow:
+    0 6px 18px rgba(15,23,42,0.03),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  color: inherit;
+  user-select: text; /* allow copy/select but don't show caret */
+  caret-color: transparent; /* ensure no caret appears */
+  cursor: default;
 }
 
 /* Kaomoji buttons container */
