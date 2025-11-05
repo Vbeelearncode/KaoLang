@@ -6,11 +6,11 @@
 #include <istream>
 #include <cctype>
 
-Interpreter::Interpreter(std::istream& input_stream) 
-: counter_(0), tape_(), input_stream_(input_stream) {}
+Interpreter::Interpreter(std::istream& input_stream, std::ostream& output_stream) 
+: counter_(0), tape_(), input_stream_(input_stream), output_stream_(output_stream) {}
 
-Interpreter::Interpreter(std::istream& input_stream, const std::vector<Command>& program)
-    : counter_(0), program_(program), tape_(), input_stream_(input_stream) {}
+Interpreter::Interpreter(std::istream& input_stream, std::ostream& output_stream, const std::vector<Command>& program)
+    : counter_(0), program_(program), tape_(), input_stream_(input_stream), output_stream_(output_stream) {}
 
 void Interpreter::loadProgram(const std::vector<Command>& program) {
     program_ = program;
@@ -104,7 +104,7 @@ void Interpreter::loopEnd() {
 
 void Interpreter::writeCharFromMemoryCell() {
     char output_char = (char)(tape_.getCurrentCellValue() & 0xFF);
-    std::cout << output_char;
+    output_stream_.put(output_char);
 }
 
 void Interpreter::moveLeftOnTape() {
