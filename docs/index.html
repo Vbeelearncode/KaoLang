@@ -47,6 +47,34 @@
             <label for="outputBox"><strong>Output</strong></label>
             <pre id="outputBox" aria-live="polite" role="status"></pre>
         </section>
+
+        <section aria-label="commands">
+            <h2>Commands</h2>
+            <p>Kaomoji commands available in KaoLang and their effects:</p>
+            <div class="commands-wrap">
+                <table class="commands-table" aria-describedby="commands-desc">
+                    <thead>
+                        <tr>
+                            <th>Kaomoji</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>👈(ﾟヮﾟ👈)</td><td>Shift current memory cell value left by 1 (multiply by 2)</td></tr>
+                        <tr><td>(👉ﾟヮﾟ)👉</td><td>Shift current memory cell value right by 1 (integer divide by 2)</td></tr>
+                        <tr><td>👈(⌒▽⌒)👉</td><td>Apply NAND between current memory cell and register; store result in current cell; clears register</td></tr>
+                        <tr><td>(ヘ･_･)ヘ┳━┳</td><td>Loop start: begin loop if current memory cell is not zero</td></tr>
+                        <tr><td>(╯°□°）╯︵ ┻━┻</td><td>Loop end: jump back to matching loop start if current memory cell is not zero</td></tr>
+                        <tr><td>✍️(◔◡◔)</td><td>Output the character corresponding to current memory cell</td></tr>
+                        <tr><td>(⓿_⓿)</td><td>Read one byte from input into the current memory cell</td></tr>
+                        <tr><td>o(( &gt;ω&lt;))o</td><td>Move memory pointer right by one cell</td></tr>
+                        <tr><td>o((&gt;ω&lt; ))o</td><td>Move memory pointer left by one cell</td></tr>
+                        <tr><td>ᕦ(ò_óˇ)ᕤ</td><td>Register operation: copy current cell into register if empty; otherwise swap/replace and clear register</td></tr>
+                    </tbody>
+                </table>
+                <p id="commands-desc">See the <a href="https://github.com/Vbeelearncode/KaoLang">Github Repo</a> for more details.</p>
+            </div>
+        </section>
     </main>
 
     <script type="module" src="index.js"></script>
