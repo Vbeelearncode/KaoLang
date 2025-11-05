@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KaoLang Interpreter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <h1>KaoLang Interpreter</h1>
+
+        <section>
+            <label for="programBox"><strong>Program</strong></label>
+            <br />
+            <textarea id="programBox" rows="10" cols="80" placeholder="Write your KaoLang program here"></textarea>
+        </section>
+
+        <section aria-label="kaomoji-buttons">
+            <p>Kaomoji buttons (click to insert):</p>
+            <div id="kaomoji-buttons">
+                <button id="kao-sl" type="button">👈(ﾟヮﾟ👈)</button>
+                <button id="kao-sr" type="button">(👉ﾟヮﾟ)👉</button>
+                <button id="kao-nand" type="button">👈(⌒▽⌒)👉</button>
+                <button id="kao-lstart" type="button">(ヘ･_･)ヘ┳━┳</button>
+                <button id="kao-lend" type="button">(╯°□°）╯︵ ┻━┻</button>
+                <button id="kao-write" type="button">✍️(◔◡◔)</button>
+                <button id="kao-read" type="button">(⓿_⓿)</button>
+                <button id="kao-mr" type="button">o(( >ω<))o</button>
+                <button id="kao-ml" type="button">o((>ω< ))o</button>
+                <button id="kao-reg" type="button">ᕦ(ò_óˇ)ᕤ</button>
+            </div>
+        </section>
+
+        <section>
+            <label for="inputBox"><strong>Input</strong></label>
+            <br />
+            <textarea id="inputBox" rows="4" cols="80" placeholder="Input provided to the program (stdin)"></textarea>
+        </section>
+
+        <section>
+            <button id="runButton" type="button">Run</button>
+        </section>
+
+        <section>
+            <label for="outputBox"><strong>Output</strong></label>
+            <textarea id="outputBox" aria-live="polite" readonly></textarea>
+        </section>
+    </main>
+
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>
